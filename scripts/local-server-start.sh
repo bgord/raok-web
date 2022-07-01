@@ -21,13 +21,4 @@ info "Built frontend"
 
 export NODE_ENV="local"
 
-npx ts-node-dev \
-  --respawn \
-  --notify false \
-  --prefer-ts \
-  --ignore-watch node_modules \
-  --ignore-watch frontend \
-  --exit-child \
-  --transpile-only \
-  --rs \
-  -- index.ts
+npx esmon index.ts
