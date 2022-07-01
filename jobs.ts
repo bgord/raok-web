@@ -24,22 +24,7 @@ const FeedlyArticlesCrawlerTask = new AsyncTask(
 
 const ArtclesToReviewNotifierTask = new AsyncTask(
   "artcles to review notifier",
-  async () => {
-    const settings = await new Settings().build();
-
-    const notification = await new Services.ArticlesToReviewNotifier(
-      settings
-    ).build();
-
-    if (notification.shouldBeSent()) {
-      try {
-        await notification.send();
-        Reporter.success("Articles to review notification sent");
-      } catch (error) {
-        Reporter.raw("ArtclesToReviewNotifierTask", error);
-      }
-    }
-  }
+  async () => {}
 );
 
 const FeedlyArticlesCrawlerJob = new SimpleIntervalJob(

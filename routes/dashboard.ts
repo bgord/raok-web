@@ -1,4 +1,6 @@
 import express from "express";
+import { h } from "preact";
+import "preact";
 import render from "preact-render-to-string";
 import * as bg from "@bgord/node";
 
@@ -28,8 +30,8 @@ export async function Dashboard(
     articles: await Repos.ArticleRepository.pagedGetAllNonProcessed(pagination),
     favouriteArticles: await Repos.ArticleRepository.getFavourite(),
     newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
-    settings: await Repos.SettingsRepository.getAll(),
-    stats: await Repos.StatsRepository.getAll(),
+    settings: null,
+    stats: null,
   };
 
   const frontend = render(App({ ...state, url: request.url }));
@@ -38,6 +40,8 @@ export async function Dashboard(
     state,
     language: request.language,
   });
+
+  console.log("here2");
 
   return response.send(html);
 }

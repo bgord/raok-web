@@ -14,20 +14,14 @@ info "Copied CSS from @bgord/design"
 
 # ==========================================================
 
-./bgord-scripts/frontend:build.sh
-info "Built frontend"
-
-# ==========================================================
-
 export NODE_ENV="local"
 
-npx ts-node-dev \
-  --respawn \
-  --notify false \
-  --prefer-ts \
-  --ignore-watch node_modules \
-  --ignore-watch frontend \
-  --exit-child \
-  --transpile-only \
-  --rs \
-  -- index.ts
+npx esbuild \
+  --bundle \
+  --platform=node \
+  --watch index.tsx \
+  --external:'canvas' \
+  --external:'jsdom' \
+  --outdir="./" \
+  --sourcemap \
+  $@
